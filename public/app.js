@@ -44,9 +44,18 @@ names.forEach((name) => {
     const buttonDeleteElement = document.createElement("button");
     buttonDeleteElement.innerText = "Excluir";
     buttonDeleteElement.addEventListener("click", (event) => {
-        // TODO: remover APENAS este item (li) da lista quando o
-        // botão for clicado (dica: event.currentTarget e parentElement).
+        // Obter o elemento que acionou a ação (botão que foi clicado)
+        const currentTargetElement = event.currentTarget;
+
+        // Queremos obter o li, seu parent (pai)
+        const liParentElement = currentTargetElement.parentElement;
+
+        // Remove apenas este li
+        liParentElement.remove();
     });
+
+    // Adicionar o botão de excluir no li
+    liElement.append(" ", buttonDeleteElement);
 
     // Adicionar na árvore DOM, no nosso ul principal
     ulElement.append(liElement);
@@ -57,16 +66,37 @@ names.forEach((name) => {
 buttonListAddElement.addEventListener("click", (event) => {
     event.preventDefault();
 
-    const inputValue = inputListAddElement.value;
+    const inputValue = inputListAddElement.value.trim();
 
     if (inputValue === "") {
         return;
     }
 
-    // TODO: criar o li do novo item (com o texto do inputValue) e o
-    // botão "Excluir" dele (igual ao padrão do forEach acima),
-    // adicionar o item na lista (ulElement) e limpar o input
-    // depois de adicionar.
+    // Criar o elemento li, item de uma lista
+    const liElement = document.createElement("li");
+
+    // Criar o botao excluir
+    const buttonDeleteElement = document.createElement("button");
+    buttonDeleteElement.innerText = "Excluir";
+    buttonDeleteElement.addEventListener("click", (event) => {
+        // Obter o elemento que acionou a ação (botão que foi clicado)
+        const currentTargetElement = event.currentTarget;
+
+        // Queremos obter o li, seu parent (pai)
+        const liParentElement = currentTargetElement.parentElement;
+
+        // Remove apenas este li
+        liParentElement.remove();
+    });
+
+    // Adicionar o conteúdo texto e o botão de excluir no li
+    liElement.append(inputValue, " ", buttonDeleteElement);
+
+    // Adicionar na árvore DOM, no nosso ul principal
+    ulElement.append(liElement);
+
+    // Limpar o input depois de adicionar
+    inputListAddElement.value = "";
 });
 
 
