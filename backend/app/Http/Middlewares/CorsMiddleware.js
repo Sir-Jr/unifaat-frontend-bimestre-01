@@ -1,14 +1,21 @@
 /**
  * Middleware de CORS.
  *
- * Libera o acesso à API para o front-end rodando em desenvolvimento
- * (Vite, http://localhost:5173), permitindo requisições cross-origin
- * com os métodos e headers necessários.
+ * Libera o acesso à API para os front-ends rodando em desenvolvimento
+ * (Vite, http://localhost:5173, http://localhost:5172 e http://localhost:7173),
+ * permitindo requisições cross-origin com os métodos e headers necessários.
  */
 export default function CorsMiddleware(request, response, next) {
-    const allowedOrigin = "http://localhost:5173";
+    const allowedOrigins = [
+        "http://localhost:5173",
+        "http://localhost:5172"
+    ];
 
-    response.setHeader("Access-Control-Allow-Origin", allowedOrigin);
+    const origin = request.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        response.setHeader("Access-Control-Allow-Origin", origin);
+    }
+
     response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
     response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     response.setHeader("Access-Control-Allow-Credentials", "true");

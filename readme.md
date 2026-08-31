@@ -76,6 +76,7 @@
 | `nginx-container`       | `nginx:1.25-alpine`  | Servir arquivos estáticos HTTP (reverse proxy).               | 80            |
 | `nodeweb-container`     | `node:25`             | Rodar a API/aplicação Node (servida via `nodemon _web.js`).   | 3000          |
 | `nodecommand-container` | `node:25`             | Rodar comandos CLI avulsos (`migrate`, `seed`) via `_command.js`. | —          |
+| `nodevitehmr-container` | `node:25`             | Servir o frontend via Vite HMR  | 5172          |
 | `postgres-container`    | `postgres:18`         | Banco de dados PostgreSQL da aplicação.                       | 5432          |
 
 ### 💾 Volumes Persistentes
@@ -103,4 +104,5 @@ app_network
 | Serviço  | Porta Interna | Porta Externa | Acesso Externo        |
 |----------|---------------|---------------|-----------------------|
 | NGINX    | 80            | **8080**      | http://localhost:8080 |
+| VITE HMR | 5172          | **5172**      | http://localhost:5172 |
 | POSTGRES | 5432          | **6789**      | localhost:6789        |

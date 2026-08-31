@@ -56,7 +56,7 @@ services:
       - nodemodules-volume:/app/node_modules
     restart: unless-stopped
     ports:
-      - "5173:5173"
+      - "5172:5172"
     networks:
       - app-network
 
