@@ -3,6 +3,7 @@ import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import postgres from '../../database/connections/postgres.js'
 import { ensureMigrationsTable, getExecutedMigrations } from '../../utils/migrationUtils.js'
+import CONSTANTS from '../../bootstrap/config.js'
 
 export default {
     name: 'migrate',
@@ -11,7 +12,9 @@ export default {
     async handle() {
         await ensureMigrationsTable(postgres);
 
-        const migrationsPath = path.resolve('database', 'migrations')
+
+
+        const migrationsPath = path.resolve(CONSTANTS.DIR, 'backend', 'database', 'migrations')
 
         await fs.mkdir(migrationsPath, { recursive: true })
 

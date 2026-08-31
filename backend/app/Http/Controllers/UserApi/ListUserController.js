@@ -4,6 +4,9 @@ export default async function ListUserController(request, response) {
     try {
         const pageRequest = Number(request.query.page) || 1;
         const limitRequest = Number(request.query.limit) || 10;
+        const order = request.query.order || "id,ASC";
+
+        const [orderField, orderDirection] = order.split(",");
 
         const page = (pageRequest < 1) ? 1 : pageRequest;
         const limit = (limitRequest > 20) ? 20 : ((limitRequest < 1) ? 10 : limitRequest);
@@ -12,10 +15,7 @@ export default async function ListUserController(request, response) {
         let next = null;
 
         const { rows, count: total } = await UserModel.findAndCountAll({
-            include: [
-
-            ],
-            order: [["id", "ASC"]],
+            order: [[orderField, orderDirection]],
             limit: limit + 1,
             offset: offset,
             distinct: true

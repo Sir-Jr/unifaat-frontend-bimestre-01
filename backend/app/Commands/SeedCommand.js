@@ -1,13 +1,14 @@
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import postgres from '../../database/connections/postgres.js'
+import CONSTANTS from '../../bootstrap/config.js'
 
 export default {
     name: 'seed',
     description: 'Popula o banco com dados de exemplo',
 
     async handle() {
-        const seedPath = path.resolve('database', 'seeds', 'initialSeed.js')
+        const seedPath = path.resolve(CONSTANTS.DIR, 'backend', 'database', 'seeds', 'initialSeed.js')
         const seedModule = await import(pathToFileURL(seedPath).href)
 
         if (typeof seedModule.default !== 'function') {

@@ -72,7 +72,7 @@ router.use('/docs', swaggerUi.serve, swaggerUi.setup(SwaggerDoc()));
 router.post('/login', LoginController);
 
 /** Router para usuários */
-router.use("/users", AuthMiddleware, userRouter);
+router.use("/users", userRouter);
 
 /**
  * Fallback 404 para requisições não encontradas

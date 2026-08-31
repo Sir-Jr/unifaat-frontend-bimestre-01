@@ -1,8 +1,10 @@
-export default function createUserListItem(user) {
+import deleteButtonClickHandler from "../listeners/deleteButtonClickHandler.js";
+
+export default function userRender(user) {
 
     const liElement = document.createElement("li");
     liElement.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
-    liElement.dataset.userId = user.id;
+    liElement.userId = user.id;
 
     const infoElement = document.createElement("div");
     infoElement.classList.add("d-flex", "flex-column");
@@ -20,11 +22,7 @@ export default function createUserListItem(user) {
     const buttonDeleteElement = document.createElement("button");
     buttonDeleteElement.classList.add("btn", "btn-danger", "btn-sm");
     buttonDeleteElement.innerText = "Excluir";
-    buttonDeleteElement.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        event.currentTarget.parentElement.remove();
-    });
+    buttonDeleteElement.addEventListener("click", deleteButtonClickHandler);
     liElement.append(buttonDeleteElement);
 
     return liElement;
