@@ -42,13 +42,13 @@
 6. Com os containers no ar, rodar as migrations do banco de dados:
 
    ```sh
-   docker compose run --rm nodecommand-container migrate
+   node command migrate
    ```
 
 7. Rodar a seed inicial para popular o banco com dados de exemplo:
 
    ```sh
-   docker compose run --rm nodecommand-container seed
+   node command seed
    ```
 
 ---
