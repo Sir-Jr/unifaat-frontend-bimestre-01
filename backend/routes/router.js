@@ -15,9 +15,16 @@ import fileUpload from 'express-fileupload';
 import swaggerUi from 'swagger-ui-express';
 import LoginController from '../app/Http/Controllers/LoginController.js';
 import AuthMiddleware from '../app/Http/Middlewares/AuthMiddleware.js';
+import CorsMiddleware from '../app/Http/Middlewares/CorsMiddleware.js';
 import SwaggerDoc from '../app/Http/SwaggerDoc.js';
 
 const router = Router();
+
+/**
+ * Middleware de CORS
+ * Libera o acesso à API para o front-end de desenvolvimento (Vite)
+ */
+router.use(CorsMiddleware);
 
 /**
  * Middleware para parsear requisições com Content-Type: application/json
