@@ -3,7 +3,7 @@ import createNameList from "./createNameList.js";
 import createUl from "./createUl.js";
 import initList from "./initList.js";
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
 
 
     const sectionListElement = document.querySelector("#list-container");
@@ -16,7 +16,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     sectionListElement.append(ulElement);
 
-    initList(ulElement);
+    try {
+        await initList(ulElement);
+    } catch (error) {
+        console.error("Falha ao carregar usuários:", error);
+    }
 
     buttonListAddElement.addEventListener("click", (event) => {
         event.preventDefault();
