@@ -10,6 +10,8 @@
     gap: 10px;
 }
 
-.item-name {
-    cursor: pointer;
+@media (max-width: 768px) {
+    body {
+        background-color: blueviolet !important;
+    }
 }
